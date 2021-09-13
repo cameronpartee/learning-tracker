@@ -1,11 +1,11 @@
-import Task from "./components/Task";
-import Header from "./components/Header";
+import Header from "./components/Layout/Header";
+import TaskList from "./components/Task/TaskList";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Task />
+      <TaskList />
     </div>
   );
 }
