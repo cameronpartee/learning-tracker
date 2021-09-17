@@ -44,6 +44,15 @@ const DUMMY_TASKS = [
     resources:
       "https://github.com/cammyp/design-challenge/blob/main/src/components/Layout/HeaderCartButton.js",
   },
+  {
+    topic: "react router",
+    description: "What is react router used for?",
+    difficulty: "Easy",
+    date: "9/15/21",
+    timeEstimate: "2mins",
+    resources:
+      "https://www.geeksforgeeks.org/reactjs-router/#:~:text=React%20Router%20is%20a%20standard,in%20sync%20with%20the%20URL.com",
+  },
 ];
 
 const TaskList = () => {
