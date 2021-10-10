@@ -1,13 +1,7 @@
-import Header from "./components/Layout/Header";
-import TaskList from "./components/Task/TaskList";
+import Page from "./components/Layout/Page";
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <TaskList />
-    </div>
-  );
+  return <Page></Page>;
 }
 
 export default App;
