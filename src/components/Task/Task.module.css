@@ -1,29 +1,5 @@
-.task {
-  height: 3rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.small-row {
-  width: 10%;
-}
-
-.medium-row {
-  width: 10%;
-}
-
-.large-row {
-  width: 30%;
-}
-
 .topic {
   background-color: rgb(201, 170, 219);
-  border-radius: 25px;
-}
-
-.diff {
-  border-radius: 25px;
 }
 
 .easy {
