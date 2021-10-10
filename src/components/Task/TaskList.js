@@ -1,6 +1,6 @@
-import Task from "./Task";
 import { useEffect, useState } from "react";
-import classes from "./TaskList.module.css";
+import styled from "styled-components";
+import Task from "./Task";
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -44,17 +44,17 @@ const TaskList = () => {
 
   if (isLoading) {
     return (
-      <section className={classes.TasksLoading}>
+      <TasksLoading>
         <p>Loading...</p>
-      </section>
+      </TasksLoading>
     );
   }
 
   if (httpError) {
     return (
-      <section className={classes.TasksError}>
+      <TasksError>
         <p>{httpError}!</p>
-      </section>
+      </TasksError>
     );
   }
 
@@ -75,3 +75,15 @@ const TaskList = () => {
 };
 
 export default TaskList;
+
+const TasksLoading = styled.div`
+  text-align: center;
+  color: black;
+  font-size: 2rem;
+`;
+
+const TasksError = styled.div`
+  text-align: center;
+  color: red;
+  font-size: 2rem;
+`;
