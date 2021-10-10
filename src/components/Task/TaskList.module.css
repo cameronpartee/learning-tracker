@@ -1,0 +1,9 @@
+.TasksLoading {
+  text-align: center;
+  color: black;
+}
+
+.TasksError {
+  text-align: center;
+  color: red;
+}
