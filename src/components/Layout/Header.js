@@ -6,11 +6,11 @@ export const Header = () => {
     <div className={classes.header}>
       <Task
         topic={"Topic"}
-        des={"Description"}
-        diff={"Difficulty"}
+        description={"Description"}
+        difficulty={"Difficulty"}
         date={"Date"}
-        time={"Time Estimate"}
-        res={"Resources"}
+        timeEstimate={"Time Estimate"}
+        resources={"Resources"}
       />
     </div>
   );
