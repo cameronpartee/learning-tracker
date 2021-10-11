@@ -1,17 +1,32 @@
 import styled from "styled-components";
 import TaskList from "../Task/TaskList";
 import TaskListHeader from "../Task/TaskListHeader";
+import { useState } from "react";
+import Modal from "../Modal/Modal";
 
 const Page = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const showModalHandler = () => {
+    setShowModal(true);
+  };
+
+  const hideModalHandler = () => {
+    setShowModal(false);
+  };
+
   return (
     <Container>
       <Sidebar></Sidebar>
+      {showModal && <Modal onClose={hideModalHandler}></Modal>}
       <Main>
         <Header>Learning Tracker</Header>
         <Grid>
           <Title>
             <div>List of Learning Concepts</div>
-            <button type="button">Add new concept</button>
+            <button onClick={showModalHandler} type="button">
+              Add new concept
+            </button>
           </Title>
           <FilterBar>
             <div>Search a concept</div>
@@ -32,7 +47,7 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: 200px auto;
+  grid-template-columns: 300px auto;
 `;
 
 const Sidebar = styled.div`
@@ -77,8 +92,18 @@ const Title = styled.div`
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
+    border-radius: 2px;
     display: inline-block;
     font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+
+    &:hover {
+      background-color: rgb(180, 219, 170);
+      border-radius: 5px;
+      font-size: 16.5px;
+      transition-duration: 0.2s;
+    }
   }
 `;
 
