@@ -23,7 +23,7 @@ const Page = () => {
         <Header>Learning Tracker</Header>
         <Grid>
           <Title>
-            <div>List of Learning Concepts</div>
+            <div>List of Learned Concepts</div>
             <button onClick={showModalHandler} type="button">
               Add new concept
             </button>
@@ -47,7 +47,7 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: 300px auto;
+  grid-template-columns: 100px auto;
 `;
 
 const Sidebar = styled.div`
@@ -56,7 +56,7 @@ const Sidebar = styled.div`
 
 const Main = styled.div`
   display: grid;
-  grid-template-rows: 100px auto;
+  grid-template-rows: 75px auto;
   background: rgb(240, 240, 240);
 `;
 const Header = styled.div`
@@ -94,7 +94,7 @@ const Title = styled.div`
     text-decoration: none;
     border-radius: 2px;
     display: inline-block;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     transition-duration: 0.2s;
 
