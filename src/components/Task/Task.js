@@ -25,7 +25,7 @@ export const Task = (props) => {
 export default Task;
 
 const Container = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   height: 4rem;
   text-align: center;
   display: flex;

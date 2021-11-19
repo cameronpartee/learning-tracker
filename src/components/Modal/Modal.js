@@ -73,7 +73,7 @@ const ContainerBackdrop = styled.div`
 
 const ContainerModal = styled.div`
   position: fixed;
-  top: 20vh;
+  top: 8vh;
   background-color: white;
   padding: 1rem;
   border-radius: 5px;
@@ -82,7 +82,7 @@ const ContainerModal = styled.div`
   animation: slide-down 300ms ease-out forwards;
   width: 35rem;
   left: calc(50% - 20rem);
-  height: 40rem;
+  height: 38rem;
 
   form {
     display: flex;

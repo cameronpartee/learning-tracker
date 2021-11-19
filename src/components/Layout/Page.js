@@ -17,7 +17,6 @@ const Page = () => {
 
   return (
     <Container>
-      <Sidebar></Sidebar>
       {showModal && <Modal onClose={hideModalHandler}></Modal>}
       <Main>
         <Header>Learning Tracker</Header>
@@ -47,22 +46,17 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: 100px auto;
-`;
-
-const Sidebar = styled.div`
-  background: rgb(215, 215, 215);
+  grid-template-columns: auto;
 `;
 
 const Main = styled.div`
   display: grid;
-  grid-template-rows: 75px auto;
-  background: rgb(240, 240, 240);
+  grid-template-rows: 50px auto;
 `;
 const Header = styled.div`
   border-bottom: 3px solid rgb(230, 230, 230);
   background: white;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,15 +64,20 @@ const Header = styled.div`
 
 const Grid = styled.div`
   border-radius: 10px;
-  margin: 75px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 25px;
+
   background: white;
   box-shadow: -0.2em 0 0.9em grey;
   display: grid;
-  grid-template-rows: 100px 100px auto;
+  grid-template-rows: 100px 70px auto;
+  height: 600px;
+  overflow-y: auto;
 `;
 
 const Title = styled.div`
-  font-size: 2rem;
+  font-size: 1.3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -113,7 +112,7 @@ const FilterBar = styled.div`
 
   div {
     color: grey;
-    font-size: 1.5rem;
+    font-size: 1rem;
     background: yellow;
     padding: 10px 25px;
     width: 100%;
