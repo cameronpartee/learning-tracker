@@ -1,0 +1,15 @@
+.topic {
+  background-color: rgb(201, 170, 219);
+}
+
+.easy {
+  background-color: rgb(180, 219, 170);
+}
+
+.medium {
+  background-color: rgb(238, 218, 37);
+}
+
+.hard {
+  background-color: rgb(219, 100, 92);
+}
