@@ -1,60 +1,29 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
 import { BsBackspaceFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const DetailPage = (props) => {
-  const [tasks, setTasks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
+  const onClickHandler = () => {
+    props.showDetail(false);
+  };
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const response = await fetch(
-        "https://learningtracker-a8476-default-rtdb.firebaseio.com/tasks.json"
-      );
+  useEffect(() => {}, [props]);
 
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-
-      const responseData = await response.json();
-      const loadedTasks = [];
-
-      // NEED TO ADD ANSWER PROPERTY
-      for (const key in responseData) {
-        loadedTasks.push({
-          id: key,
-          topic: responseData[key].topic,
-          description: responseData[key].description,
-          difficulty: responseData[key].difficulty,
-          date: responseData[key].date,
-          timeEstimate: responseData[key].timeEstimate,
-          url: responseData[key].resources,
-        });
-      }
-
-      setTasks(loadedTasks);
-      setIsLoading(false);
-    };
-
-    fetchTasks().catch((error) => {
-      setIsLoading(false);
-      setHttpError(error.message);
-    });
-  }, []);
   return (
     <Container>
       <Text>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <BsBackspaceFill />
-        </Link>
+        <div>
+          <BsBackspaceFill onClick={onClickHandler} />
+          <span>Back to Home</span>
+        </div>
         <div>Problem Statement</div>
-        <div>{props.task.description}</div>
+        <div>{props.content !== undefined && props.content[0]}</div>
         <div>Example 1:</div>
       </Text>
       <Sandbox>
-        <SandboxText>{"cp$ npx create-react-app app-name"}</SandboxText>
+        <SandboxText>
+          {props.content !== undefined && props.content[1]}
+        </SandboxText>
       </Sandbox>
       <img src="https://i.stack.imgur.com/TXGoT.png" alt="" />
     </Container>
@@ -75,28 +44,39 @@ const Container = styled.div`
 
 const Text = styled.div`
    svg {
-    margin-bottom: 35px;
+    color: grey;
    }
 
+   > div:nth-child(1) {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  
+    span {
+      margin-left: 8px;
+      font-weight: 600;
+    }
+  }
+
   > div:nth-child(2) {
-    font-size: 1.5em;
+    margin-top: 30px;   
+    margin-bottom: 10px;
     font-weight: 600;
-    color: rgb(10, 10, 10);
-    letter-spacing: 1px;
-    margin-bottom: 15px;
   }
 
   > div:nth-child(3) {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     color: rgb(85, 85, 85);
+    font-size: 1.5em;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
 
   > div:last-child {
     font-weight: 600;
     color: rgb(10, 10, 10);
-    letter-spacing: 1px;
     font-size 0.9em;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
   }
 `;
 
@@ -105,10 +85,12 @@ const Sandbox = styled.div`
   height: 80px;
   background: rgb(10, 10, 10);
   border: 1px grey solid;
+  margin-bottom: 20px;
 `;
 
 const SandboxText = styled.div`
   margin-left: 10px;
   margin-top: 15px;
   color: rgb(53, 192, 161);
+  letter-spacing: 0.1px;
 `;
