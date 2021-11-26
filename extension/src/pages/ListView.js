@@ -16,7 +16,11 @@ const ListView = (props) => {
       />
       <BsQuestionCircleFill />
       {props.tasks.map((task) => (
-        <Cell title={task.topic} />
+        <Cell
+          task={task}
+          showDetail={props.showDetail}
+          getContent={props.getContent}
+        />
       ))}
     </Container>
   );
