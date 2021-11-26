@@ -1,15 +1,17 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const Cell = (props) => {
+  const onClickHandler = () => {
+    props.getContent([props.task.description, props.task.codeSnip]);
+    props.showDetail(true);
+  };
+
   return (
-    <Link to="/detail" style={{ textDecoration: "none" }}>
-      <CellContainer>
-        <img src="/img/greyblock.png" alt="" style={{ height: "6px" }} />
-        <CellText>{props.title}</CellText>
-        <img src="/img/dots.png" alt="" style={{ height: "6px" }} />
-      </CellContainer>
-    </Link>
+    <CellContainer onClick={onClickHandler}>
+      <img src="/img/greyblock.png" alt="" style={{ height: "6px" }} />
+      <CellText>{props.task.description}</CellText>
+      <img src="/img/dots.png" alt="" style={{ height: "6px" }} />
+    </CellContainer>
   );
 };
 
@@ -40,7 +42,7 @@ const CellContainer = styled.div`
 `;
 
 const CellText = styled.div`
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: 500;
   color: rgb(50, 50, 50);
   margin-left: 5px;
