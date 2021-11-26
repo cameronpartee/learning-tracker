@@ -1,4 +1,3 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DetailPage from "./pages/DetailPage";
 import ListView from "./pages/ListView";
@@ -9,6 +8,8 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
+  const [showDetail, setShowDetail] = useState(false);
+  const [content, getContent] = useState("");
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -25,12 +26,12 @@ function App() {
 
       for (const key in responseData) {
         loadedTasks.push({
+          key: Math.random(),
           id: key,
-          topic: responseData[key].topic,
           description: responseData[key].description,
           difficulty: responseData[key].difficulty,
           date: responseData[key].date,
-          timeEstimate: responseData[key].timeEstimate,
+          codeSnip: responseData[key].codeSnip,
           url: responseData[key].resources,
         });
       }
@@ -47,15 +48,15 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<ListView tasks={tasks} />}></Route>
-          <Route
-            path="/detail"
-            element={<DetailPage task={tasks[8]} />}
-          ></Route>
-        </Routes>
-      </BrowserRouter>
+      {showDetail ? (
+        <DetailPage content={content} showDetail={setShowDetail} />
+      ) : (
+        <ListView
+          tasks={tasks}
+          showDetail={setShowDetail}
+          getContent={getContent}
+        />
+      )}
     </div>
   );
 }
