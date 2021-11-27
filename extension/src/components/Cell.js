@@ -2,7 +2,11 @@ import styled from "styled-components";
 
 const Cell = (props) => {
   const onClickHandler = () => {
-    props.getContent([props.task.description, props.task.codeSnip]);
+    props.getContent([
+      props.task.description,
+      props.task.codeSnip,
+      props.task.url,
+    ]);
     props.showDetail(true);
   };
 
