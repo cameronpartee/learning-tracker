@@ -1,4 +1,4 @@
-import { BsQuestionCircleFill } from "react-icons/bs";
+import { BsPlusCircleDotted } from "react-icons/bs";
 import styled from "styled-components";
 import Cell from "../components/Cell";
 
@@ -14,7 +14,7 @@ const ListView = (props) => {
           marginLeft: "15px",
         }}
       />
-      <BsQuestionCircleFill />
+      <BsPlusCircleDotted />
       {props.tasks.map((task) => (
         <Cell
           task={task}
