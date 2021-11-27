@@ -12,8 +12,8 @@ const DetailPage = (props) => {
   return (
     <Container>
       <Text>
-        <div>
-          <BsBackspaceFill onClick={onClickHandler} />
+        <div onClick={onClickHandler}>
+          <BsBackspaceFill />
           <span>Back to Home</span>
         </div>
         <div>Problem Statement</div>
@@ -26,6 +26,9 @@ const DetailPage = (props) => {
         </SandboxText>
       </Sandbox>
       <img src="https://i.stack.imgur.com/TXGoT.png" alt="" />
+      <a href={props.content !== undefined && props.content[2]} target="_blank">
+        Learn More
+      </a>
     </Container>
   );
 };
@@ -35,10 +38,20 @@ export default DetailPage;
 const Container = styled.div`
   margin-top: 30px;
   margin-left: 30px;
+  display: flex;
+  flex-direction: column;
 
   img {
     margin-top: 30px;
     width: 90%;
+  }
+
+  a {
+    text-align: right;
+    margin-top: 20px;
+    margin-right: 50px;
+    text-decoration: none;
+    cursor: pointer;
   }
 `;
 
@@ -59,9 +72,12 @@ const Text = styled.div`
   }
 
   > div:nth-child(2) {
-    margin-top: 30px;   
-    margin-bottom: 10px;
+    margin-top: 45px;   
+    margin-bottom: 15px;
     font-weight: 600;
+    text-align: center;
+    font-size: 1.3em;
+    width: 450px;
   }
 
   > div:nth-child(3) {
@@ -70,6 +86,8 @@ const Text = styled.div`
     font-size: 1.5em;
     font-weight: 600;
     letter-spacing: 1px;
+    text-align: center;
+    width: 450px;
   }
 
   > div:last-child {
@@ -82,7 +100,7 @@ const Text = styled.div`
 
 const Sandbox = styled.div`
   width: 90%;
-  height: 80px;
+  height: 70px;
   background: rgb(10, 10, 10);
   border: 1px grey solid;
   margin-bottom: 20px;
