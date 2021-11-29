@@ -1,19 +1,15 @@
 import styled from "styled-components";
 
 const Cell = (props) => {
-  const onClickHandler = () => {
-    props.getContent([
-      props.task.description,
-      props.task.codeSnip,
-      props.task.url,
-    ]);
+  const onCellIdentifyHandler = () => {
+    props.setStartIndex(props.task.id);
     props.showDetail(true);
   };
 
   return (
-    <CellContainer onClick={onClickHandler}>
+    <CellContainer onClick={onCellIdentifyHandler}>
       <img src="/img/greyblock.png" alt="" style={{ height: "6px" }} />
-      <CellText>{props.task.description}</CellText>
+      <CellText>{props.task.topic}</CellText>
       <img src="/img/dots.png" alt="" style={{ height: "6px" }} />
     </CellContainer>
   );
