@@ -1,39 +1,66 @@
 import styled from "styled-components";
-import { BsBackspaceFill } from "react-icons/bs";
-import { useEffect } from "react";
+import { BsBackspaceFill, BsBackspaceReverseFill } from "react-icons/bs";
+import { useState, useEffect } from "react";
 
-const DetailPage = (props) => {
-  const onClickHandler = () => {
-    props.showDetail(false);
+const DetailView = (props) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    // using a string id find the index of onject in array
+    let id = props.startIndex;
+    let numIndex = 0;
+    for (let i in props.tasks) {
+      if (props.tasks[i].id === id) break;
+      numIndex++;
+    }
+    setIndex(numIndex);
+  }, [props.startIndex, props.tasks]);
+
+  const onBacktoHomeButtonHandler = () => {
+    props.showHome(false);
   };
 
-  useEffect(() => {}, [props]);
+  const onNextPageButtonHandler = () => {
+    let length = props.tasks.length;
+    let i = index + 1;
+    i === length ? setIndex(0) : setIndex(i);
+  };
 
   return (
     <Container>
       <Text>
-        <div onClick={onClickHandler}>
-          <BsBackspaceFill />
-          <span>Back to Home</span>
+        <div>
+          <div onClick={onBacktoHomeButtonHandler}>
+            <BsBackspaceFill />
+            <span>Back to Home</span>
+          </div>
+          <div onClick={onNextPageButtonHandler}>
+            <span>Next Page</span>
+            <BsBackspaceReverseFill />
+          </div>
         </div>
         <div>Problem Statement</div>
-        <div>{props.content !== undefined && props.content[0]}</div>
-        <div>Example 1:</div>
+        <div>{props.tasks !== undefined && props.tasks[index].description}</div>
+        <div>Code Sandbox:</div>
       </Text>
       <Sandbox>
         <SandboxText>
-          {props.content !== undefined && props.content[1]}
+          {props.tasks !== undefined && props.tasks[index].codeSnip}
         </SandboxText>
       </Sandbox>
-      <img src="https://i.stack.imgur.com/TXGoT.png" alt="" />
-      <a href={props.content !== undefined && props.content[2]} target="_blank">
+      <img src={props.tasks !== undefined && props.tasks[index].img} alt="" />
+      <a
+        href={props.tasks !== undefined && props.tasks[index].url}
+        target="_blank"
+        rel="noreferrer"
+      >
         Learn More
       </a>
     </Container>
   );
 };
 
-export default DetailPage;
+export default DetailView;
 
 const Container = styled.div`
   margin-top: 30px;
@@ -42,7 +69,7 @@ const Container = styled.div`
   flex-direction: column;
 
   img {
-    margin-top: 30px;
+    margin-top: 20px;
     width: 90%;
   }
 
@@ -62,11 +89,22 @@ const Text = styled.div`
 
    > div:nth-child(1) {
     display: flex;
-    align-items: center;
-    cursor: pointer;
+    position: relative;
+
+    div {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    > div:last-child {
+      position: absolute;
+      right: 50px;
+    }
   
     span {
       margin-left: 8px;
+      margin-right: 8px;
       font-weight: 600;
     }
   }
@@ -81,7 +119,7 @@ const Text = styled.div`
   }
 
   > div:nth-child(3) {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     color: rgb(85, 85, 85);
     font-size: 1.5em;
     font-weight: 600;
@@ -103,7 +141,7 @@ const Sandbox = styled.div`
   height: 70px;
   background: rgb(10, 10, 10);
   border: 1px grey solid;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 `;
 
 const SandboxText = styled.div`
