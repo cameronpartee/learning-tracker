@@ -1,8 +1,8 @@
-import { BsPlusCircleDotted } from "react-icons/bs";
+import { BsQuestionCircleFill } from "react-icons/bs";
 import styled from "styled-components";
 import Cell from "../components/Cell";
 
-const ListView = (props) => {
+const HomeListView = (props) => {
   return (
     <Container>
       <img
@@ -14,19 +14,19 @@ const ListView = (props) => {
           marginLeft: "15px",
         }}
       />
-      <BsPlusCircleDotted />
+      <BsQuestionCircleFill />
       {props.tasks.map((task) => (
         <Cell
           task={task}
           showDetail={props.showDetail}
-          getContent={props.getContent}
+          setStartIndex={props.setStartIndex}
         />
       ))}
     </Container>
   );
 };
 
-export default ListView;
+export default HomeListView;
 
 const Container = styled.div`
   margin: 10px;
