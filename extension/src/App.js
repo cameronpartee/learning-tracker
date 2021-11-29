@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
-import DetailPage from "./pages/DetailPage";
-import ListView from "./pages/ListView";
+import DetailView from "./pages/DetailPage";
+import HomeListView from "./pages/ListView";
 
-// HTTP GET REQUEST FROM FIREBASE
-// ROUTING
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [httpError, setHttpError] = useState();
   const [showDetail, setShowDetail] = useState(false);
-  const [content, getContent] = useState("");
+  const [startIndex, setStartIndex] = useState("");
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -30,31 +26,32 @@ function App() {
           id: key,
           description: responseData[key].description,
           difficulty: responseData[key].difficulty,
-          date: responseData[key].date,
+          topic: responseData[key].topic,
           codeSnip: responseData[key].codeSnip,
           url: responseData[key].resources,
+          img: responseData[key].img,
         });
       }
 
       setTasks(loadedTasks);
-      setIsLoading(false);
     };
 
-    fetchTasks().catch((error) => {
-      setIsLoading(false);
-      setHttpError(error.message);
-    });
+    fetchTasks();
   }, []);
 
   return (
     <div className="App">
       {showDetail ? (
-        <DetailPage content={content} showDetail={setShowDetail} />
+        <DetailView
+          tasks={tasks}
+          showHome={setShowDetail}
+          startIndex={startIndex}
+        />
       ) : (
-        <ListView
+        <HomeListView
           tasks={tasks}
           showDetail={setShowDetail}
-          getContent={getContent}
+          setStartIndex={setStartIndex}
         />
       )}
     </div>
