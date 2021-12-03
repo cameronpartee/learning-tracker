@@ -1,28 +1,28 @@
 import styled from "styled-components";
 import { BsBackspaceFill, BsBackspaceReverseFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
-import IFrameComp from "./iframe";
+import CodeSandbox from "../components/CodeSandbox";
 
-const DetailView = (props) => {
+const DetailView = ({ tasks, startIndex, showHome }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    // using a string id find the index of onject in array
-    let id = props.startIndex;
+    // using a string id find the index of object in array
+    let id = startIndex;
     let numIndex = 0;
-    for (let i in props.tasks) {
-      if (props.tasks[i].id === id) break;
+    for (let i in tasks) {
+      if (tasks[i].id === id) break;
       numIndex++;
     }
     setIndex(numIndex);
-  }, [props.startIndex, props.tasks]);
+  }, [startIndex, tasks]);
 
   const onBacktoHomeButtonHandler = () => {
-    props.showHome(false);
+    showHome(false);
   };
 
   const onNextPageButtonHandler = () => {
-    let length = props.tasks.length;
+    let length = tasks.length;
     let i = index + 1;
     i === length ? setIndex(0) : setIndex(i);
   };
@@ -41,17 +41,22 @@ const DetailView = (props) => {
           </div>
         </div>
         <div>Problem Statement</div>
-        <div>{props.tasks !== undefined && props.tasks[index].description}</div>
+        <div>{tasks !== undefined && tasks[index].description}</div>
       </Text>
-      <IFrameComp />
+      <CodeSandbox
+        src={
+          "https://codesandbox.io/embed/frosty-lake-l2ul6?fontsize=10&hidenavigation=1&theme=dark"
+        }
+        title={"frosty-lake-l2ul6"}
+      />
       {/* <Sandbox>
         <SandboxText>
-          {props.tasks !== undefined && props.tasks[index].codeSnip}
+          {tasks !== undefined && tasks[index].codeSnip}
         </SandboxText>
       </Sandbox> */}
-      <img src={props.tasks !== undefined && props.tasks[index].img} alt="" />
+      <img src={tasks !== undefined && tasks[index].img} alt="" />
       <a
-        href={props.tasks !== undefined && props.tasks[index].url}
+        href={tasks !== undefined && tasks[index].url}
         target="_blank"
         rel="noreferrer"
       >
@@ -133,19 +138,4 @@ const Text = styled.div`
     text-align: center;
     width: 450px;
   }
-`;
-
-const Sandbox = styled.div`
-  width: 90%;
-  height: 70px;
-  background: rgb(10, 10, 10);
-  border: 1px grey solid;
-  margin-bottom: 5px;
-`;
-
-const SandboxText = styled.div`
-  margin-left: 10px;
-  margin-top: 15px;
-  color: rgb(53, 192, 161);
-  letter-spacing: 0.1px;
 `;
