@@ -27,7 +27,6 @@ function App() {
           description: responseData[key].description,
           difficulty: responseData[key].difficulty,
           topic: responseData[key].topic,
-          codeSnip: responseData[key].codeSnip,
           url: responseData[key].resources,
           img: responseData[key].img,
         });

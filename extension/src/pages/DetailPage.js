@@ -49,11 +49,6 @@ const DetailView = ({ tasks, startIndex, showHome }) => {
         }
         title={"frosty-lake-l2ul6"}
       />
-      {/* <Sandbox>
-        <SandboxText>
-          {tasks !== undefined && tasks[index].codeSnip}
-        </SandboxText>
-      </Sandbox> */}
       <img src={tasks !== undefined && tasks[index].img} alt="" />
       <a
         href={tasks !== undefined && tasks[index].url}
