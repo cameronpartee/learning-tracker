@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import DetailView from "./pages/DetailPage";
-import HomeListView from "./pages/ListView";
+import HomeListView from "./pages/HomeListView";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -24,6 +24,8 @@ function App() {
         loadedTasks.push({
           key: Math.random(),
           id: key,
+          codeSrc: responseData[key].codeSrc,
+          codeTitle: responseData[key].codeTitle,
           description: responseData[key].description,
           difficulty: responseData[key].difficulty,
           topic: responseData[key].topic,
