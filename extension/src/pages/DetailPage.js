@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BsBackspaceFill, BsBackspaceReverseFill } from "react-icons/bs";
+import { IoMdHome } from "react-icons/io";
 import { useState, useEffect } from "react";
 import CodeSandbox from "../components/CodeSandbox";
 
@@ -27,13 +28,22 @@ const DetailView = ({ tasks, startIndex, showHome }) => {
     i === length ? setIndex(0) : setIndex(i);
   };
 
+  const onPreviousPageButtonHandler = () => {
+    let length = tasks.length;
+    let i = index - 1;
+    i === -1 ? setIndex(length - 1) : setIndex(i);
+  };
+
   return (
     <Container>
       <Text>
         <div>
-          <div onClick={onBacktoHomeButtonHandler}>
+          <div onClick={onPreviousPageButtonHandler}>
             <BsBackspaceFill />
-            <span>Back to Home</span>
+            <span>Previous Page</span>
+          </div>
+          <div onClick={onBacktoHomeButtonHandler}>
+            <IoMdHome />
           </div>
           <div onClick={onNextPageButtonHandler}>
             <span>Next Page</span>
@@ -44,10 +54,8 @@ const DetailView = ({ tasks, startIndex, showHome }) => {
         <div>{tasks !== undefined && tasks[index].description}</div>
       </Text>
       <CodeSandbox
-        src={
-          "https://codesandbox.io/embed/frosty-lake-l2ul6?fontsize=10&hidenavigation=1&theme=dark"
-        }
-        title={"frosty-lake-l2ul6"}
+        src={tasks !== undefined && tasks[index].codeSrc}
+        title={tasks !== undefined && tasks[index].codeTitle}
       />
       <img src={tasks !== undefined && tasks[index].img} alt="" />
       <a
@@ -101,6 +109,10 @@ const Text = styled.div`
       display: flex;
       align-items: center;
       cursor: pointer;
+    }
+
+    > div:nth-child(2) {
+      margin-left: 70px;
     }
 
     > div:last-child {
