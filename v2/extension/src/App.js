@@ -1,60 +1,29 @@
-import { useEffect, useState } from "react";
-import DetailView from "./pages/DetailPage";
-import HomeListView from "./pages/HomeListView";
+import { TextField } from "@fluentui/react/lib/TextField";
+import { DefaultButton } from "@fluentui/react/lib/Button";
+import { useState } from "react";
 
+// WRITE TO FIREBASE
+// STORE DATA
 function App() {
-  const [tasks, setTasks] = useState([]);
-  const [showDetail, setShowDetail] = useState(false);
-  const [startIndex, setStartIndex] = useState("");
+  const [url, setURL] = useState("");
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      const response = await fetch(
-        "https://learningtracker-a8476-default-rtdb.firebaseio.com/tasks.json"
-      );
-
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-
-      const responseData = await response.json();
-      const loadedTasks = [];
-
-      for (const key in responseData) {
-        loadedTasks.push({
-          key: Math.random(),
-          id: key,
-          codeSrc: responseData[key].codeSrc,
-          codeTitle: responseData[key].codeTitle,
-          description: responseData[key].description,
-          difficulty: responseData[key].difficulty,
-          topic: responseData[key].topic,
-          url: responseData[key].resources,
-          img: responseData[key].img,
-        });
-      }
-
-      setTasks(loadedTasks);
-    };
-
-    fetchTasks();
-  }, []);
+  const onClickHandler = (_, e) => {
+    setURL(e);
+  };
 
   return (
     <div className="App">
-      {showDetail ? (
-        <DetailView
-          tasks={tasks}
-          showHome={setShowDetail}
-          startIndex={startIndex}
-        />
-      ) : (
-        <HomeListView
-          tasks={tasks}
-          showDetail={setShowDetail}
-          setStartIndex={setStartIndex}
-        />
-      )}
+      <div style={{ display: "grid", gridTemplateColumns: "65% auto" }}>
+        <div style={{ margin: "0 10px" }}>
+          <TextField
+            placeholder="Enter a website URL"
+            onChange={onClickHandler}
+          />
+        </div>
+        <div style={{ margin: "0 0px" }}>
+          <DefaultButton text="Submit" />
+        </div>
+      </div>
     </div>
   );
 }
