@@ -1,11 +1,11 @@
 {
-  "name": "Learning Tracker",
-  "description": "A tracker for all the things you learn",
+  "name": "Learning Tracker 2.0",
+  "description": "Track all the URLs you have used to learn new topics",
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "Open the popup"
+    "default_title": "learning tracker."
   },
   "icons": {
     "16": "/img/109732.png",
